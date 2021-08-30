@@ -29,6 +29,11 @@ export const Cell = styled.div`
     cursor: pointer;
 `
 
+export const Center = styled.div`
+    width: 100vw;
+    text-align: center;
+`;
+
 function App() {
   let [board, setBoard] = useState(Array(9).fill(false));
 
@@ -73,26 +78,33 @@ function App() {
   }
 
   return (
-    <Grid
-      height={3}
-      width={3}
-      bgColor={"#34495e"}
-      borderColor={"#2c3e50"}
-    >
-      {
-        board.map((cell, index) => {
-          if (index === 4) return (<Cell key={index} bgColor={'white'} borderColor={"#2c3e50"}/>)
-          else return (
-            <Cell
-              key={index}
-              borderColor={"#2c3e50"}
-              bgColor={cell? "#34495e" : "#23384d"}
-              onClick={() => toggleCells(index)}
-            />
-          )
-        })
-      }
-    </Grid>
+    <>
+      <Grid
+        height={3}
+        width={3}
+        bgColor={"#34495e"}
+        borderColor={"#2c3e50"}
+      >
+        {
+          board.map((cell, index) => {
+            if (index === 4) return (<Cell key={index} bgColor={'white'} borderColor={"#2c3e50"}/>)
+            else return (
+              <Cell
+                key={index}
+                borderColor={"#2c3e50"}
+                bgColor={cell? "#34495e" : "#23384d"}
+                onClick={() => toggleCells(index)}
+              />
+            )
+          })
+        }
+      </Grid>
+
+      <Center>
+        <h1>Click on a cell to toggle it and its adjacent neighbors</h1>
+        <h2>The cells start turned off, your goal is to turn them all on</h2>
+      </Center>
+    </>
   );
 }
 
